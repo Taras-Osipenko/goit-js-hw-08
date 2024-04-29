@@ -66,15 +66,50 @@ const images = [
 
   const gallery = document.querySelector(".gallery");
 
- gallery.insertAdjacentHTML("beforeend", createMarkup(products));
+function createMarkup(arr) {
+    return arr.map(({preview, original, description}) => `
+    <li class="gallery-item" data-id="${description}">
+        <a class="gallery-link" href="large-image.jpg">
+            <img
+             class="gallery-image"
+             src=${preview}
+             data-source=${original}
+             alt=${description}
+             width=360px
+             height=300px
+            />
+        </a>
+    </li>`).join("");
+}
 
- container.addEventListener("click", handleModalOpen);
+gallery.insertAdjacentHTML("beforeend", createMarkup(images));
 
- function handleModalOpen(event) {
-    if (event.currentTarget === event.target) return;
+// gallery.addEventListener("click", handleModalOpen);
 
-    const currentProduct = event.target.closest(".item");
-    const productId = Number(currentProduct.dataset.id);
+// function handleModalOpen (event) {
+//     if (event.currentTarget === event.target) return;
 
-    const img = images
- }
+//    const currentImg = event.target.closest(".gallery-item");
+
+//    const imgId = currentImg.dataset.id;
+
+//   const img = images.find(({description}) => description === imgId);
+
+//   console.log(img);
+
+// }
+
+
+
+
+//  container.addEventListener("click", handleModalOpen);
+
+//  function handleModalOpen(event) {
+//     if (event.currentTarget === event.target) return;
+
+//     const currentProduct = event.target.closest(".item");
+//     const productId = Number(currentProduct.dataset.id);
+
+//     const img = images
+//  }
+
